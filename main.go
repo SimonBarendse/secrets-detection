@@ -1,9 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
 	// Fictional secret
-	apiKey := "hLYuNm4Wzn2RphLYuNms4rhlpse4rhlps"
+	apiKey := os.Getenv("API_KEY")
 	fmt.Println(apiKey)
 }
