@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.5
+    steps:
+      - checkout
+      - run: 
+          name: Install detect-secrets
+          command: sudo pip install detect-secrets
+      - run: 
+          name: Scan for hardcoded secrets
+          command: detect-secrets scan . | jq '.results' | tee /dev/tty | jq length | grep "^0$" > /dev/null
